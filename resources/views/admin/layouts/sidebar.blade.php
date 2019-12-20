@@ -7,7 +7,7 @@
               <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
             </div>
             <div class="pull-left info">
-              <p>Sitagu Buddhist Academy</p>
+              <p>{{ ucfirst(Auth::user()->name) }}</p>
               <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
             </div>
           </div>
@@ -27,9 +27,17 @@
             
 
             <li class=""><a href="{{route('post.index')}}"><i class="fa fa-circle-o"></i> Post</a></li>
+
+            @can('posts.category', Auth::user())
             <li class=""><a href="{{route('category.index')}}"><i class="fa fa-circle-o"></i> Category</a></li>
+            @endcan
+
+            @can('posts.tag', Auth::user())
             <li class=""><a href="{{route('tag.index')}}"><i class="fa fa-circle-o"></i> Tags</a></li>
+            @endcan
             <li class=""><a href="{{route('user.index')}}"><i class="fa fa-circle-o"></i> Users</a></li>
+            <li class=""><a href="{{route('role.index')}}"><i class="fa fa-circle-o"></i> User Roles</a></li>
+            <li class=""><a href="{{route('permission.index')}}"><i class="fa fa-circle-o"></i> Permission</a></li>
 
           </li>
            </ul>

@@ -2,7 +2,7 @@
         <div class="pull-right hidden-xs">
           <b>Version</b> 2.3.0
         </div>
-        <strong>Copyright &copy; 2014-2015 <a href="http://almsaeedstudio.com">Almsaeed Studio</a>.</strong> All rights reserved.
+        <strong>Copyright &copy; 2018- {{ Carbon\carbon::now()->year }} <a href="https://www.facebook.com/rose.tr.75">Developered By Ashin Indavuha</a>.</strong> All rights reserved.
       </footer>
 
       <!-- jQuery 2.1.4 -->
@@ -44,8 +44,7 @@
     <!-- <script src="{{asset('admin/dist/js/pages/dashboard.js')}}"></script> -->
     <!-- AdminLTE for demo purposes -->
     <script src="{{asset('admin/dist/js/demo.js')}}"></script>
-
-
+    
 @section('footerSection')
 
 @show

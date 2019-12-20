@@ -24,75 +24,94 @@
 
 				<div class="box box-primary">
 					<div class="box-header with-border">
-						<h3 class="box-title">Title</h3>
-					</div><!-- /.box-header -->
-					<!-- form start -->
-					<form role="form">
-						<div class="box-body">
-							<div class="col-lg-6">
-								<div class="form-group">
-									<label for="title">Post Title</label>
-									<input type="text" class="form-control" id="title" name="title" placeholder="Post Title">
-								</div>
-
-								<div class="form-group">
-									<label for="subtitle">Post Subtitle</label>
-									<input type="text" class="form-control" id="subtitle" name="subtitle" placeholder="Sub Title">
-								</div>
-
-								<div class="form-group">
-									<label for="slug">Post Slug</label>
-									<input type="text" class="form-control" id="slug" name="slug" placeholder="Post Slug">
-								</div>
-							</div>
-
-							<div class="col-lg-6">
-								<div class="form-group">
-								<label for="image">File input</label>
-								<input type="file" name="image" id="image">
-							</div>
-
-							<br>
-							<br>
-
-							<div class="checkbox">
-								<label>
-									<input type="checkbox" name="status"> Publish
-								</label>
-							</div>
-						
-							</div>
-							</div><!-- /.box-body -->
-
-
-							<div class="box">
-					<div class="box-header">
-						<h3 class="box-title">Write Post Body Here <small>Simple and fast</small></h3>
-						<!-- tools box -->
-						<div class="pull-right box-tools">
-							<button class="btn btn-default btn-sm" data-widget="collapse" data-toggle="tooltip" title="Collapse"><i class="fa fa-minus"></i></button>
-
-						</div><!-- /. tools -->
-					</div><!-- /.box-header -->
-					<div class="box-body pad">
-						<form>
-							<textarea class="textarea" placeholder="Place some text here" name="body" style="width: 100%; height: 500px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
-						</form>
+						<h3 class="box-title">New User Create</h3>
 					</div>
-				</div>
+					@include('admin.layouts.errors')
+					<!-- form start -->
+					<form action="{{route('user.store')}}" method="POST">
+						@csrf
 
-						<div class="box-footer">
-							<button type="submit" class="btn btn-primary">Submit</button>
+						<div class="box-body">
+							<div class="col-lg-offset-3 col-lg-6">
+								<div class="form-group">
+									<label for="name">User Name</label>
+									<input type="text" class="form-control" id="name" name="name" placeholder="User Name" value="{{ old('name') }}">
+								</div>
+
+							
+								<div class="form-group">
+									<label for="email">Email</label>
+									<input type="email" class="form-control" id="email" name="email" placeholder="Email" value="{{ old('email') }}">
+								</div>
+
+								<div class="form-group">
+									<label for="phone">Phone</label>
+									<input type="phone" class="form-control" id="phone" name="phone" placeholder="Phone" value="{{ old('phone') }}">
+								</div>
+
+								<div class="form-group">
+									<label for="password">Password</label>
+									<input type="password" class="form-control" id="password" name="password" placeholder="Password" value="{{ old('password') }}">
+								</div>
+
+								<div class="form-group">
+									<label for="password_confirmation">Confirm Password</label>
+									<input type="password" class="form-control" id="password_confirmation" name="password_confirmation" placeholder="Confirm Password">
+								</div>
+								<div class="form-group">
+									<label for="stutas">Status</label>
+										<div class="checkbox">
+											
+											<label><input type="checkbox" name="status" @if (old('status') == 1)
+												checked @endif
+												value="1">Stutas</label>
+											
+										</div>
+									</div>
+
+								<div class="form-group">
+									<label>Assign Role</label>
+									<div class="row">
+										@foreach ($roles as $role)
+									<div class="col-lg-4">
+										<div class="checkbox">
+						<label><input type="checkbox" value="{{ $role->id }}" name="role[]">{{ $role->name }}</label>
+
+										</div>
+									</div>
+									@endforeach
+									</div>
+									
+									<!-- <div class="col-lg-4">
+										<div class="checkbox">
+											<label><input type="checkbox" name="">Publisher</label>
+											
+										</div>
+									</div>
+									<div class="col-lg-4">
+										<div class="checkbox">
+											<label><input type="checkbox" name="">Writer</label>
+											
+										</div>
+									</div> -->
+								</div>
+
+								<div class="form-group">
+									<button type="submit" class="btn btn-primary">Submit</button>
+									<a href="{{route('user.index')}}" class="btn btn-warning">Back</a>
+								</div>
+							</div>
+
+
 						</div>
-					</form>
-				</div>
+					</div>
+					<!-- /.box-body -->
 
-
-
-				
-			</div><!-- /.col-->
-		</div><!-- ./row -->
-	</section><!-- /.content -->
+				</form>
+			</div>
+		</div><!-- /.col-->
+	</div><!-- ./row -->
+</section><!-- /.content -->
 </div><!-- /.content-wrapper -->
 
 @endsection

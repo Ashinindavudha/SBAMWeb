@@ -7,9 +7,16 @@ use Illuminate\Http\Request;
 use App\Model\user\Post;
 use App\Model\user\Tag;
 use App\Model\user\Category;
+use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth:admin');
+    }
+
     public function index()
     {
        $posts = Post::all();
@@ -17,9 +24,14 @@ class PostController extends Controller
     }
     public function create()
     {
-        $tags = Tag::all();
-        $categories = Category::all();
-        return view('admin.posts.post', compact('tags', 'categories'));
+        if (Auth::user()->can('posts.create')) {
+            $tags = Tag::all();
+            $categories = Category::all();
+            return view('admin.posts.post', compact('tags', 'categories'));
+    
+        }
+        return redirect(route('admin.home'));
+        
     }
     public function store(Request $request)
     {
@@ -29,9 +41,16 @@ class PostController extends Controller
             'subtitle' => 'required',
             'slug' => 'required',
             'body' => 'required',
+            'image' => 'required'
         ]);
 
+         if ($request->hasFile('image')) {
+            //return $request->image->getClientOriginalName();
+            $imageName = $request->image->store('public');
+        }
+
         $post = new Post;
+        $post->image = $imageName;
         $post->title = $request->title;
         $post->subtitle = $request->subtitle;
         $post->slug = $request->slug;
@@ -51,10 +70,13 @@ class PostController extends Controller
     public function edit($id)
     {
         //$post = Post::where('id',$id)->get(); return $post;
+        if (Auth::user()->can('posts.update')) {
         $post = Post::with('tags','categories')->where('id',$id)->first();//return $post;
         $tags = Tag::all();
         $categories = Category::all();
         return view('admin.posts.edit', compact('tags', 'categories','post'));
+        }
+        return redirect(route('admin.home'));
 
         //return view('admin.posts.edit', compact('post'));
     }
@@ -67,9 +89,16 @@ class PostController extends Controller
             'subtitle' => 'required',
             'slug' => 'required',
             'body' => 'required',
+            'image' => 'required'
         ]);
 
+        if ($request->hasFile('image')) {
+            //return $request->image->getClientOriginalName();
+            $imageName = $request->image->store('public');
+        }
+
         $post = Post::find($id);
+        $post->image = $imageName;
         $post->title = $request->title;
         $post->subtitle = $request->subtitle;
         $post->slug = $request->slug;
@@ -79,14 +108,14 @@ class PostController extends Controller
         $post->categories()->sync($request->categories);
         $post->save();
 
-        return redirect(route('post.index'));
+        return redirect(route('post.index'))->with('message','Post Updated Successfully');
         
         //return $request->all();
     }
     public function destroy($id)
     {
         Post::where('id', $id)->delete();
-        return redirect()->back();
+        return redirect()->back()->with('message','Post Delete Successfully');
         //return $id;
     }
 }

@@ -32,7 +32,7 @@
 					</div>
 					@include('admin.layouts.errors')
 					<!-- form start -->
-					<form action="{{route('post.store')}}" method="POST">
+					<form action="{{route('post.store')}}" method="POST" enctype="multipart/form-data">
 						@csrf
 						<div class="box-body">
 							<div class="col-lg-6">
@@ -102,7 +102,7 @@
 							</div><!-- /.box-header -->
 							<div class="box-body pad">
 
-								<textarea class="textarea" placeholder="Place some text here" name="body" style="width: 100%; height: 500px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
+								<textarea name="body" style="width: 100%; height: 500px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;" id="editor1"></textarea>
 
 							</div>
 						</div>
@@ -125,6 +125,19 @@
 @endsection
 @section('footerSection')
 <script src="{{ asset('admin/plugins/select2/select2.full.min.js') }}"></script>
+<!-- <script src="//cdn.ckeditor.com/4.13.1/full/ckeditor.js"></script>    -->
+<script src="{{ asset('admin/ckeditor/ckeditor.js')}}"></script>
+     <script>
+      $(function () {
+        // Replace the <textarea id="editor1"> with a CKEditor
+        // instance, using default configuration.
+        CKEDITOR.replace('editor1');
+        //bootstrap WYSIHTML5 - text editor
+        $(".textarea").wysihtml5();
+      });
+    </script>
+
+
 <script>
 	$(document).ready(function(){
 		$(".select2").select2();

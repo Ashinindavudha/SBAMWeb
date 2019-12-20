@@ -14,7 +14,7 @@ class CreateCategoryPostsTable extends Migration
     public function up()
     {
         Schema::create('category_posts', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            //$table->bigIncrements('id');
             $table->unsignedBigInteger('post_id'); //You must use unsignedBigInteger for foreign key column. integer is not ok.
             $table->unsignedBigInteger('category_id');
             $table->timestamps();

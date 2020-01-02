@@ -30,7 +30,7 @@
 					<div class="box-header with-border">
 						<h3 class="box-title">Title</h3>
 					</div>
-					@include('admin.layouts.errors')
+					
 					<!-- form start -->
 					<form action="{{route('post.store')}}" method="POST" enctype="multipart/form-data">
 						@csrf
@@ -112,6 +112,7 @@
 							<a href="{{ route('post.index') }}" class="btn btn-warning">Back</a>
 						</div>
 					</form>
+					@include('sweetalert::alert')
 				</div>
 
 

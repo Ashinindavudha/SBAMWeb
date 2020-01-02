@@ -52,7 +52,7 @@ class TagController extends Controller
             $tag->name = $request->name;
             $tag->slug = $request->slug;
             $tag->save();
-            return redirect(route('tag.index'));
+            return redirect(route('tag.index'))->with('success', 'Tag was Created');
             
 
 

@@ -1,5 +1,5 @@
-@extends('user.app')
-@section('bg-img',Storage::disk('local')->url($post->image))
+@extends('user.include.app')
+<!-- @section('bg-img',Storage::disk('local')->url($post->image)) -->
 @section('head')
 <link rel="stylesheet" href="{{ asset('user/css/prism.css') }}">
 @endsection
@@ -14,14 +14,16 @@
     <div class="container">
       <div class="row">
         <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-          <small>Created at  {{ $post->created_at->diffForHumans() }}</small>
+          <small>Created at  {{ $post->created_at->diffForHumans() }}</small><br><br>
           
             @foreach($post->categories as $category)
             <small class="float-right" style="margin-right: 20px;">
               <a href="">{{ $category->name }}</a>
           </small>
           @endforeach
-
+          <img src="{{asset(Storage::disk('local')->url($post->image))}}" class="img-fluid" alt="Responsive image">
+          <h1 class="text-align-center">{{ $post->title }}</h1>
+          <h4>{{ $post->subtitle }}</h4>
           {!! htmlspecialchars_decode($post->body) !!}
 
 

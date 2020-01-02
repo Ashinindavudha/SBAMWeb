@@ -8,6 +8,7 @@ use App\Model\user\Post;
 use App\Model\user\Tag;
 use App\Model\user\Category;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 class PostController extends Controller
 {
@@ -37,12 +38,15 @@ class PostController extends Controller
     {
         
         $this->validate($request,[
-            'title'=>'required',
-            'subtitle' => 'required',
+            'title'=>'required|min:10',
+            'subtitle' => 'required|min:10',
             'slug' => 'required',
-            'body' => 'required',
+            'body' => 'required|min:10',
             'image' => 'required'
         ]);
+        /*if ($validator->fail()) {
+            return back()->with('error', $validator->messages()->all([0])->withInput());
+        }*/
 
          if ($request->hasFile('image')) {
             //return $request->image->getClientOriginalName();
@@ -59,7 +63,7 @@ class PostController extends Controller
         $post->save();
         $post->tags()->sync($request->tags);
         $post->categories()->sync($request->categories);
-        return redirect(route('post.index'));
+        return redirect(route('post.index'))->with('success', 'Post was Created');
         //return $request->all();
     }
     public function show($id)

@@ -4,8 +4,24 @@
 Route::group(['namespace' => 'User'], function(){
 Route::get('/', 'HomeController@index');
 Route::get('post/{post?}', 'PostController@post')->name('post');
+Route::get('members', 'AcaMemberController@index')->name('members');
+Route::get('coursetimetable', 'CourseTimeTableController@index');
+Route::get('courseadvertise', 'CourseAdvertiseController@index');
+Route::resource('assignment', 'ResearchPostController');
+Route::get('students', 'StudentListController@index');
+Route::get('results', 'ExamResultController@index');
+Route::get('registed/students', 'StudentRegistrationController@index');
+Route::resource('history/department', 'HistoryDepartmentController');
+//English Department Post Route
+Route::resource('fileupload', 'MultiplUploadController');
+//English Grammar Route
+Route::resource('englishgrammar', 'EnglishGrammarController');
+//English Essay Route
+Route::resource('essayenglish', 'EnglishEssayController');
+//SayadawPdf Route
 
-
+Route::resource('sayadawpdf', 'SayadawPdfController');
+Route::get('/downloadpdf', 'SayadawPdfController@download');
 Route::get('post/tag/{tag}', 'HomeController@tag')->name('tag');
 Route::get('post/category/{category}', 'HomeController@category')->name('category');
 });
@@ -34,6 +50,45 @@ Route::resource('admin/tag', 'TagController');
 //Category Route
 Route::resource('admin/category', 'CategoryController');
 
+//Academic_Member_Route
+
+Route::resource('academic/member', 'AcademicMemberController');
+
+//MA Courses TimeTable Route
+
+Route::resource('ma/first', 'MAFirstController');
+
+// Course Advertise Route
+Route::resource('course/advertise', 'CourseAdvertiseController');
+//Research Post Route
+
+Route::resource('student/research', 'ResearchPostController');
+
+//Student List Route
+
+Route::resource('student/list', 'StudentListController');
+
+// MA Exam Result Route
+
+Route::resource('exam/result', 'ExamResultController');
+
+//Student Registration Route
+
+Route::resource('students/registration', 'StudentRegistrationController');
+
+//History Department Route 
+Route::resource('department/history', 'HistoryDepartmentController');
+
+//Englsih Department Post Route
+Route::resource('file/upload', 'MultiplUploadController');
+//Englsih Grammar Post Route
+
+Route::resource('english/grammar', 'EnglishGrammarController');
+//English Essay Route
+Route::resource('english/essay', 'EnglishEssayController');
+//SayadawPdf Route
+
+Route::resource('sayadaw/pdf', 'SayadawPdfController');
 //Admin Auth Routes
 Route::get('admin-login', 'Auth\LoginController@showLoginForm')->name('admin.login');
 Route::post('admin-login', 'Auth\LoginController@login');

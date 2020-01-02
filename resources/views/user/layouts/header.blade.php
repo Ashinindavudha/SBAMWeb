@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
     <div class="container">
-      <a class="navbar-brand" href="index.html">Start Bootstrap</a>
+      <a class="navbar-brand" href="index.html">SBA-M</a>
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         Menu
         <i class="fas fa-bars"></i>
@@ -8,8 +8,9 @@
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">
-            <a class="nav-link" href="index.html">Home</a>
+            <a class="nav-link" href="/">Home</a>
           </li>
+          
           <li class="nav-item">
             <a class="nav-link" href="about.html">About</a>
           </li>
@@ -21,26 +22,11 @@
           <li class="nav-item">
             <a class="nav-link" href="contact.html">Contact</a>
           </li>
-<li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Dropdown
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Something else here</a>
-        </div>
-          
-          <li class="nav-item">
-            <a class="nav-link" href="{{ route('admin.login') }}">Admin Login</a>
-          </li>
-
-          <li class="nav-item">
-            @if (Auth::guest())
-            <a class="nav-link" href="{{ route('login') }}">Login</a>
+         <li class="nav-item"> <a class="nav-link" href="{{ route('admin.login') }}">Admin Login</a></li>
+           @if (Auth::guest())
+           <li class="nav-item"> <a class="nav-link" href="{{ route('login') }}">Login</a>
             @else
-                <a class="dropdown-item" href="{{ route('logout') }}"
+                <a class="nav-link active" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
@@ -50,13 +36,13 @@
                                         @csrf
                                     </form>
             
-            @endif
-          </li>
+            @endif</li>
         </ul>
       </div>
     </div>
   </nav>
-  <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+
+  <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" >
   <ol class="carousel-indicators">
     <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
     <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>

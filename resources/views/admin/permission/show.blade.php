@@ -32,6 +32,8 @@
        <div class="box">
         <div class="box-header">
           @include('admin.layouts.errors')
+          @include('sweetalert::alert')
+
         </div><!-- /.box-header -->
         <div class="box-body">
           <table id="example1" class="table table-bordered table-striped">

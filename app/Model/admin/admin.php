@@ -46,4 +46,13 @@ class admin extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function student($value='') {
+        return $this->hasMany('App\Model\user\StudentList');
+    }
+
+    public function history()
+    {
+        return $this->beLongsTo('App\Model\user\HistoryDepartment');
+    }
 }

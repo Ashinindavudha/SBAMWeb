@@ -55,7 +55,7 @@ class UserController extends Controller
         $request['password'] = bcrypt($request->password);
         $user = admin::create($request->all());
         $user->roles()->sync($request->role);
-        return redirect(route('user.index'))->with('message','New User Add Successfully');
+        return redirect(route('user.index'))->with('message','New User Add Successfully')->with('success', 'User was Created');
 
     }
 

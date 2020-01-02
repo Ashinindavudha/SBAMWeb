@@ -54,7 +54,7 @@ class PermissionController extends Controller
         $permission->name = $request->name;
         $permission->for =$request->for;
         $permission->save();
-        return redirect(route('permission.index'));
+        return redirect(route('permission.index'))->with('success', 'Permission was Created');
     }
 
     /**

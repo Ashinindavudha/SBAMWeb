@@ -32,27 +32,20 @@
 					</div>
 					
 					<!-- form start -->
-					<form action="{{route('upload.store')}}" method="POST" enctype="multipart/form-data">
+					<form action="{{route('lesson.store')}}" method="POST" enctype="multipart/form-data">
 						@csrf
 						<div class="box-body">
 							<div class="col-lg-6">
 								<div class="form-group">
-									<label for="title">Title</label>
-									<input type="text" class="form-control" id="title" name="title" placeholder="Post Title">
+									<label for="title">Computer Lesson Title</label>
+									<input type="text" class="form-control" id="title" name="title" placeholder="Computer Lesson Title">
 								</div>
-								<div class="form-group">
-									<div class="pull-right">
-										<label for="image">File input</label>
-										<input type="file" name="image" id="image">
-									</div>
+								
 									<div class="checkbox pull-left">
 										<label>
 											<input type="checkbox" name="status" value="1"> Publish
 										</label>
 									</div>
-									
-								</div>
-								
 							</div>
 
 							
@@ -81,7 +74,7 @@
 
 						<div class="box-footer">
 							<input type="submit" name="" class="btn btn-primary" value="Submit">
-							<a href="{{ route('upload.index') }}" class="btn btn-warning">Back</a>
+							<a href="{{ route('lesson.index') }}" class="btn btn-warning">Back</a>
 						</div>
 					</form>
 					@include('sweetalert::alert')

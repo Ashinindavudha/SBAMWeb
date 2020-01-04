@@ -4,26 +4,30 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Model\user\ComputerLesson;
 use Illuminate\Support\Facades\Auth;
-use App\Model\user\StudentList;
+ 
 
-class StudentListController extends Controller
+
+class ComputerLessonController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-     public function __construct()
+
+    public function __construct()
     {
         $this->middleware('auth:admin');
-        $this->middleware('can:posts.category');
     }
+    
     public function index()
     {
-        $students = StudentList::all();
+        $computers = ComputerLesson::all();
        
-        return view('admin.studentlist.index', compact('students'));
+        return view('admin.ComputerLesson.index', compact('computers'));
+
     }
 
     /**
@@ -33,8 +37,7 @@ class StudentListController extends Controller
      */
     public function create()
     {
-        return view('admin.studentlist.create');
-        
+        return view('admin.ComputerLesson.create');
     }
 
     /**
@@ -45,22 +48,18 @@ class StudentListController extends Controller
      */
     public function store(Request $request)
     {
-        //dd($request);
-        $this->validate($request,[
-            'reg'=>'required',
-            'name' => 'required',
-            'semester' => 'required',
-            'roll' => 'required'
+        $request->validate([
+            "title" => 'required' ,
+            "body" => 'required ' ,    
         ]);
-   
-        $post = new StudentList;
-        $post->reg = $request->reg;
-        $post->name = $request->name;
-        $post->semester = $request->semester;
-        $post->roll = $request->roll;
+        $post = new ComputerLesson;
+        $post->title = $request->title;
+        $post->body = $request->body;
+        $post->status = $request->status;
         $post->user_id = Auth::id();
         $post->save();
-        return redirect(route('list.index'))->with('success', 'StudentList was Created');
+
+        return redirect(route('lesson.index'))->with('success', 'ComputerLesson Post was Created');
 
     }
 
@@ -83,8 +82,8 @@ class StudentListController extends Controller
      */
     public function edit($id)
     {
-        $student = StudentList::where('id',$id)->first();
-        return view('admin.studentlist.edit', compact('student'));
+        $computer = ComputerLesson::where('id',$id)->first();
+        return view('admin.ComputerLesson.edit', compact('computer'));
     }
 
     /**
@@ -96,21 +95,18 @@ class StudentListController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->validate($request,[
-            'reg'=>'required',
-            'name' => 'required',
-            'semester' => 'required',
-            'roll' => 'required'
+        $request->validate([
+            "title" => 'required' ,
+            "body" => 'required ' ,    
         ]);
-   
-        $post = StudentList::find($id);
-        $post->reg = $request->reg;
-        $post->name = $request->name;
-        $post->semester = $request->semester;
-        $post->roll = $request->roll;
+        $post = ComputerLesson::find($id);
+        $post->title = $request->title;
+        $post->body = $request->body;
+        $post->status = $request->status;
         $post->user_id = Auth::id();
         $post->save();
-        return redirect(route('list.index'))->with('success', 'StudentList was Updated');
+
+        return redirect(route('lesson.index'))->with('success', 'ComputerLesson Post was Updated');
     }
 
     /**
@@ -121,7 +117,7 @@ class StudentListController extends Controller
      */
     public function destroy($id)
     {
-        StudentList::where('id', $id)->delete();
-        return redirect()->back()->with('success', 'StudentList was Deleted');
+        ComputerLesson::where('id', $id)->delete();
+        return redirect()->back()->with('success', 'ComputerLesson Post was Deleted');
     }
 }

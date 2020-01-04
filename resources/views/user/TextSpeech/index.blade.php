@@ -16,28 +16,76 @@
         </h1>
 
         <!-- Blog Post -->
-        @foreach($researches as $post)
+        
         <div class="card mb-4">
-          <img class="card-img-top" src="{{asset(Storage::disk('local')->url($post->image_name))}}" alt="Card image cap">
+          <img class="card-img-top" src="" alt="Card image cap">
           <div class="card-body">
-            
-            <h2 class="card-title">{{ $post->title }}</h2>
-            
-            <a href="{{ route('fileupload.show', $post->id) }}" class="btn btn-primary">Read More &rarr;</a>
+            <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <label class="input-group-text" for="inputGroupSelect01">Choose Language</label>
           </div>
-          <div class="card-footer text-muted">
-            Posted on {{ $post->created_at->diffForHumans() }} by
-            <a href="#"></a>
+          <select class="custom-select" id="language">
             
-          </div>
+          </select>
         </div>
-        @endforeach
-        <!-- Pagination -->
-        <div class="clearfix">
-          {{ $researches->links() }}
+          <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="">Text</span>
+          </div>
+          <input type="text" class="form-control" id="text" placeholder="Write Here Your Text" aria-label="Username" aria-describedby="basic-addon1">
         </div>
 
+        <button class="btn btn-primary" id="speech">Speech</button>
+          </div>
+          
+        </div>
+        
+        <!-- Pagination -->
+        
+
       </div>
+
+
+<script>
+  var languageInput = document.getElementById('language');
+  var textInput = document.getElementById('text');
+  var speechInput = document.getElementById('speech');
+
+  var voices = [];
+  function getVoiceList(argument) {
+    voices = speechSynthesis.getVoices();
+
+    var options = '';
+    voices.forEach((voice) => {
+      options += `<option value="${voice.name}">${voice.name}</option>`;
+    });
+
+    languageInput.innerHTML = options;
+  }
+
+  getVoiceList();
+
+  speechSynthesis.onvoiceschanged = getVoiceList;
+
+  speechInput.addEventListener('click', function(){
+    var language = languageInput.value;
+    var text = textInput.value;
+
+    var utterance = new SpeechSynthesisUtterance(text);
+
+    voices.forEach((voice) => {
+      if (voice.name == language) {
+        utterance.voice = voice;
+      }
+    });
+
+    speechSynthesis.speak(utterance);
+
+  });
+
+</script>
+
+
 
       <!-- Sidebar Widgets Column -->
       <div class="col-md-4">
@@ -57,26 +105,26 @@
 
         <!-- Categories Widget -->
         <div class="card my-4">
-          <h5 class="card-header" style="text-align: center; color: #00008B;">More Study ! English Language </h5>
+          <h5 class="card-header">Categories</h5>
           <div class="card-body">
             <div class="row">
               <div class="col-lg-6">
                 <ul class="list-unstyled mb-0">
                   <li>
-                    <h6><a href="{{url('/englishgrammar')}}" style="text-decoration:none;">English Grammar</a>
-                  </li></h6>
+                    <a href="#">Web Design</a>
+                  </li>
                   <li>
-                    <h6><a href="{{url('/essayenglish')}}" style="text-decoration: none; ">English Essay</a>
-                  </li></h6>
+                    <a href="#">HTML</a>
+                  </li>
                   <li>
-                    <a href="{{url('/assignment')}}">Assignment Paper</a>
+                    <a href="#">Freebies</a>
                   </li>
                 </ul>
               </div>
               <div class="col-lg-6">
                 <ul class="list-unstyled mb-0">
                   <li>
-                    <a href="{{url('/textspeech')}}" style="text-decoration: none; ">English TextSpeech</a>
+                    <a href="#">JavaScript</a>
                   </li>
                   <li>
                     <a href="#">CSS</a>
@@ -106,6 +154,8 @@
   </div>
   <!-- /.container -->
 @endsection
+
+
 </body>
 
 </html>

@@ -28,11 +28,11 @@
 
 				<div class="box box-primary">
 					<div class="box-header with-border">
-						<h3 class="box-title">Title</h3>
+						<h3 class="box-title">Computer Department Post Create</h3>
 					</div>
 					
 					<!-- form start -->
-					<form action="{{route('upload.store')}}" method="POST" enctype="multipart/form-data">
+					<form action="{{route('computer.store')}}" method="POST" enctype="multipart/form-data">
 						@csrf
 						<div class="box-body">
 							<div class="col-lg-6">
@@ -81,7 +81,7 @@
 
 						<div class="box-footer">
 							<input type="submit" name="" class="btn btn-primary" value="Submit">
-							<a href="{{ route('upload.index') }}" class="btn btn-warning">Back</a>
+							<a href="{{ route('computer.index') }}" class="btn btn-warning">Back</a>
 						</div>
 					</form>
 					@include('sweetalert::alert')

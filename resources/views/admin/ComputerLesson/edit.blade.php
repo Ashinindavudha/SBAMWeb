@@ -3,7 +3,6 @@
 <link rel="stylesheet" href="{{asset('admin/plugins/select2/select2.min.css')}}">
 @endsection
 
-
 @section('main-content')
 
 <div class="content-wrapper">
@@ -30,37 +29,26 @@
 					<div class="box-header with-border">
 						<h3 class="box-title">Title</h3>
 					</div>
-					
+					@include('admin.layouts.errors')
 					<!-- form start -->
-					<form action="{{route('upload.store')}}" method="POST" enctype="multipart/form-data">
+					<form action="{{route('lesson.update', $computer->id)}}" method="POST" enctype="multipart/form-data">
 						@csrf
+						{{ method_field('PATCH') }}
 						<div class="box-body">
 							<div class="col-lg-6">
 								<div class="form-group">
-									<label for="title">Title</label>
-									<input type="text" class="form-control" id="title" name="title" placeholder="Post Title">
+									<label for="title">ComputerLesson Title</label>
+									<input type="text" class="form-control" id="title" name="title" placeholder="ComputerLesson Title"
+									value="{{ $computer->title }}">
 								</div>
-								<div class="form-group">
-									<div class="pull-right">
-										<label for="image">File input</label>
-										<input type="file" name="image" id="image">
-									</div>
 									<div class="checkbox pull-left">
 										<label>
-											<input type="checkbox" name="status" value="1"> Publish
+											<input type="checkbox" name="status" value="1" @if ($computer->status == 1) {{'checked'}} @endif> Publish
 										</label>
 									</div>
-									
-								</div>
-								
 							</div>
-
-							
-								
-								
 							</div>
 						</div><!-- /.box-body -->
-
 
 
 						<div class="box">
@@ -72,19 +60,20 @@
 
 								</div><!-- /. tools -->
 							</div><!-- /.box-header -->
+							
+							
 							<div class="box-body pad">
 
-								<textarea name="body" style="width: 100%; height: 500px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;" id="editor1"></textarea>
+								<textarea name="body" style="width: 100%; height: 500px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;" id="editor1">{{ $computer->body}}</textarea>
 
 							</div>
 						</div>
 
 						<div class="box-footer">
 							<input type="submit" name="" class="btn btn-primary" value="Submit">
-							<a href="{{ route('upload.index') }}" class="btn btn-warning">Back</a>
+							<a href="{{ route('lesson.index') }}" class="btn btn-warning">Back</a>
 						</div>
 					</form>
-					@include('sweetalert::alert')
 				</div>
 
 
@@ -96,9 +85,11 @@
 </div><!-- /.content-wrapper -->
 
 @endsection
+
 @section('footerSection')
 <script src="{{ asset('admin/plugins/select2/select2.full.min.js') }}"></script>
-<!-- <script src="//cdn.ckeditor.com/4.13.1/full/ckeditor.js"></script>    -->
+<!-- <script src="//cdn.ckeditor.com/4.13.1/full/ckeditor.js"></script>  -->  
+
 <script src="{{ asset('admin/ckeditor/ckeditor.js')}}"></script>
      <script>
       $(function () {

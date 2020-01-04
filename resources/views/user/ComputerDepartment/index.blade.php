@@ -11,19 +11,40 @@
       <!-- Blog Entries Column -->
       <div class="col-md-8">
 
+        <div class="card text-center">
+  <div class="card-header">
+    <ul class="nav nav-tabs card-header-tabs">
+      <li class="nav-item">
+        <a class="nav-link btn btn-outline-primary" href="{{url('/phpprogramming')}}">PHP Programming</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link active" href="#">C++ Programming</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link active" href="#">Android Programming</a>
+      </li>
+    </ul>
+  </div>
+  <div class="card-body">
+    <h5 class="card-title">Computer Lesson </h5>
+    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+    <a href="{{url('/computerlesson')}}" class="btn btn-primary">Go Study Programming Language</a>
+  </div>
+</div>
+
         <h1 class="my-4">Page Heading
           <small>Secondary Text</small>
         </h1>
 
         <!-- Blog Post -->
-        @foreach($researches as $post)
+        @foreach($computers as $post)
         <div class="card mb-4">
-          <img class="card-img-top" src="{{asset(Storage::disk('local')->url($post->image_name))}}" alt="Card image cap">
+          <img class="card-img-top" src="{{asset(Storage::disk('local')->url($post->image))}}" alt="Card image cap">
           <div class="card-body">
             
             <h2 class="card-title">{{ $post->title }}</h2>
             
-            <a href="{{ route('fileupload.show', $post->id) }}" class="btn btn-primary">Read More &rarr;</a>
+            <a href="{{ route('computerdepartment.show', $post->id) }}" class="btn btn-primary">Read More &rarr;</a>
           </div>
           <div class="card-footer text-muted">
             Posted on {{ $post->created_at->diffForHumans() }} by
@@ -34,7 +55,7 @@
         @endforeach
         <!-- Pagination -->
         <div class="clearfix">
-          {{ $researches->links() }}
+          {{ $computers->links() }}
         </div>
 
       </div>

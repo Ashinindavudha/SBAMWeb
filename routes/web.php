@@ -21,6 +21,19 @@ Route::resource('essayenglish', 'EnglishEssayController');
 //SayadawPdf Route
 
 Route::resource('sayadawpdf', 'SayadawPdfController');
+
+//ComputerDepartment Route
+
+Route::resource('computerdepartment', 'ComputerDepartmentController');
+
+//ComputerLesson Route
+Route::resource('computerlesson', 'ComputerLessonController');
+
+//Php Lesson Route
+
+Route::resource('phpprogramming', 'PhPLessonController');
+
+
 Route::get('/downloadpdf', 'SayadawPdfController@download');
 Route::get('post/tag/{tag}', 'HomeController@tag')->name('tag');
 Route::get('post/category/{category}', 'HomeController@category')->name('category');
@@ -89,9 +102,27 @@ Route::resource('english/essay', 'EnglishEssayController');
 //SayadawPdf Route
 
 Route::resource('sayadaw/pdf', 'SayadawPdfController');
+
+//ComputerDepartment Route
+
+Route::resource('department/computer', 'ComputerDepartmentController');
+
+//Computer Lesson Route
+
+Route::resource('computer/lesson', 'ComputerLessonController');
+
+//Php Lesson Route
+
+Route::resource('php/programming', 'PhPLessonController');
+
 //Admin Auth Routes
 Route::get('admin-login', 'Auth\LoginController@showLoginForm')->name('admin.login');
 Route::post('admin-login', 'Auth\LoginController@login');
+});
+
+//Text Speech Route
+Route::get('/textspeech', function () {
+    return view('user.TextSpeech.index');
 });
 
 

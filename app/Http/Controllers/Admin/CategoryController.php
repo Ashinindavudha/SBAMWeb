@@ -52,7 +52,7 @@ class CategoryController extends Controller
             $category->name = $request->name;
             $category->slug = $request->slug;
             $category->save();
-            return redirect(route('category.index'));
+            return redirect(route('category.index'))->with('success','Category Created Successfully');
         
     }
 
@@ -98,7 +98,7 @@ class CategoryController extends Controller
             $category->name = $request->name;
             $category->slug = $request->slug;
             $category->save();
-            return redirect(route('category.index'));
+            return redirect(route('category.index'))->with('success','Category Updated Successfully');
     }
 
     /**
@@ -111,6 +111,6 @@ class CategoryController extends Controller
     {
         
         Category::where('id', $id)->delete();
-        return redirect()->back();
+        return redirect()->back()->with('success','Post Deleted Successfully');
     }
 }

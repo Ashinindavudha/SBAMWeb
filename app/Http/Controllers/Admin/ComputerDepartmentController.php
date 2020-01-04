@@ -4,27 +4,26 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Model\user\HistoryDepartment;
-use Illuminate\Support\Facades\Auth;
-class HistoryDepartmentController extends Controller
+use App\Model\user\ComputerDepartment;
+
+class ComputerDepartmentController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-
-    public function __construct()
+     public function __construct()
     {
         $this->middleware('auth:admin');
+        $this->middleware('can:posts.category');
     }
-
 
     public function index()
     {
-        $histories = HistoryDepartment::all();
-       
-        return view('admin.History.index', compact('histories'));
+        
+        $computers = ComputerDepartment::all();
+        return view('admin.ComputerDepartment.index', compact('computers'));
     }
 
     /**
@@ -34,7 +33,7 @@ class HistoryDepartmentController extends Controller
      */
     public function create()
     {
-        return view('admin.History.create');
+        return view('admin.ComputerDepartment.create');
     }
 
     /**
@@ -46,9 +45,9 @@ class HistoryDepartmentController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            "title" => 'required | min:5' ,
-            "body" => 'required | min:10' ,
-            "image" => 'required |mimes:jpeg,jpg,png' ,
+            "title" => 'required' ,
+            "body" => 'required' ,
+            "image" => 'required' ,
              
         ]);
 
@@ -56,16 +55,16 @@ class HistoryDepartmentController extends Controller
             $imageName = $request->image->store('public');
         }
 
-        $post = new HistoryDepartment;
+        $post = new ComputerDepartment;
         $post->title = $request->title;
         $post->body = $request->body;
         $post->image = $imageName;
         $post->status = $request->status;
-        $post->user_id = Auth::id();
+        
         $post->save();
 
-        return redirect(route('history.index'))->with('success', 'HistoryDepartment Post was Created');
-
+        return redirect(route('computer.index'))->with('success', 'ComputerDepartment Post was Created');
+       
     }
 
     /**
@@ -76,7 +75,7 @@ class HistoryDepartmentController extends Controller
      */
     public function show($id)
     {
-        return view('admin.History.create');
+        //
     }
 
     /**
@@ -87,8 +86,8 @@ class HistoryDepartmentController extends Controller
      */
     public function edit($id)
     {
-        $history = HistoryDepartment::where('id',$id)->first();
-        return view('admin.History.edit', compact('history'));
+        $computer = ComputerDepartment::where('id',$id)->first();
+        return view('admin.ComputerDepartment.edit', compact('computer'));
     }
 
     /**
@@ -101,28 +100,26 @@ class HistoryDepartmentController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            "title" => 'required | min:5' ,
-            "body" => 'required | min:10' ,
-            //"image" => 'required |mimes:jpeg,jpg,png' ,
+            "title" => 'required' ,
+            "body" => 'required' ,
+            "image" => 'required' ,
              
         ]);
 
         if ($request->hasFile('image')) {
             $imageName = $request->image->store('public');
-        }else{
-            $imageName = request('oldimg');
         }
 
-        $post = HistoryDepartment::find($id);
+        $post = ComputerDepartment::find($id);
         $post->title = $request->title;
         $post->body = $request->body;
         $post->image = $imageName;
         $post->status = $request->status;
-        $post->user_id = Auth::id();
+        
         $post->save();
 
-        return redirect(route('history.index'))->with('success', 'HistoryDepartment Post was Created');
-
+        return redirect(route('computer.index'))->with('success', 'Computer Department Post was Updated');
+       
     }
 
     /**
@@ -133,7 +130,7 @@ class HistoryDepartmentController extends Controller
      */
     public function destroy($id)
     {
-        HistoryDepartment::where('id', $id)->delete();
-        return redirect()->back()->with('success', 'HistoryDepartment Post was Deleted');
+        ComputerDepartment::where('id', $id)->delete();
+        return redirect()->back()->with('success','Computer Department Post was Deleted Successfully');
     }
 }

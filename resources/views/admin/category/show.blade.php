@@ -8,6 +8,7 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
           @include('admin.layouts.pagehead')
+          @include('sweetalert::alert')
           <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
             <li><a href="#">Examples</a></li>

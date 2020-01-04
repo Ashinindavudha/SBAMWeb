@@ -1,28 +1,22 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Model\user\Tag;
+use App\Model\user\ComputerDepartment;
 
-
-class TagController extends Controller
+class ComputerDepartmentController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function __construct()
-    {
-        $this->middleware('auth:admin');
-        $this->middleware('can:posts.tag');
-    }
     public function index()
     {
-         $tags = Tag::all();
-         return view('admin.Tag.show', compact('tags'));
+         $computers = ComputerDepartment::where('status',1)->orderBy('created_at','DESC')->paginate(2);
+        return view('user.ComputerDepartment.index', compact('computers'));
     }
 
     /**
@@ -32,7 +26,7 @@ class TagController extends Controller
      */
     public function create()
     {
-         return view('admin.Tag.tag');
+        //
     }
 
     /**
@@ -42,21 +36,8 @@ class TagController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    { 
-        $this->validate($request,[
-            'name' => 'required',
-            'slug' => 'required',
-            
-        ]);
-            $tag = new Tag;
-            $tag->name = $request->name;
-            $tag->slug = $request->slug;
-            $tag->save();
-            return redirect(route('tag.index'))->with('success', 'Tag was Created');
-            
-
-
-        //return $request->all();
+    {
+        //
     }
 
     /**
@@ -67,7 +48,10 @@ class TagController extends Controller
      */
     public function show($id)
     {
-        //
+        $post = ComputerDepartment::find($id);
+        //dd($post);
+
+        return view('user.ComputerDepartment.detail', compact('post'));
     }
 
     /**
@@ -78,9 +62,7 @@ class TagController extends Controller
      */
     public function edit($id)
     {
-         $tag = Tag::where('id',$id)->first();
-        return view('admin.Tag.edit', compact('tag'));
-   
+        //
     }
 
     /**
@@ -92,17 +74,7 @@ class TagController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->validate($request,[
-            'name' => 'required',
-            'slug' => 'required',
-            
-        ]);
-            $tag = Tag::find($id);
-            $tag->name = $request->name;
-            $tag->slug = $request->slug;
-            $tag->save();
-            return redirect(route('tag.index'))->with('success','Tag Updated Successfully');
-        
+        //
     }
 
     /**
@@ -113,8 +85,6 @@ class TagController extends Controller
      */
     public function destroy($id)
     {
-        
-        Tag::where('id', $id)->delete();
-        return redirect()->back()->with('success','Tag Deleted Successfully');
+        //
     }
 }

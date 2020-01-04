@@ -28,31 +28,28 @@
 
 				<div class="box box-primary">
 					<div class="box-header with-border">
-						<h3 class="box-title">Title</h3>
+						<!-- <h3 class="box-title">Title</h3> -->
 					</div>
 					
 					<!-- form start -->
-					<form action="{{route('upload.store')}}" method="POST" enctype="multipart/form-data">
+					<form action="{{route('programming.store')}}" method="POST" enctype="multipart/form-data">
 						@csrf
 						<div class="box-body">
 							<div class="col-lg-6">
 								<div class="form-group">
-									<label for="title">Title</label>
-									<input type="text" class="form-control" id="title" name="title" placeholder="Post Title">
-								</div>
-								<div class="form-group">
-									<div class="pull-right">
-										<label for="image">File input</label>
-										<input type="file" name="image" id="image">
-									</div>
-									<div class="checkbox pull-left">
-										<label>
-											<input type="checkbox" name="status" value="1"> Publish
-										</label>
-									</div>
-									
+									<label for="title">Computer Lesson Title</label>
+									<input type="text" class="form-control" id="title" name="title" placeholder="Computer Lesson Title">
 								</div>
 								
+
+
+									<div class="checkbox pull-left">
+										<label>
+										<input type="checkbox" name="status" value="1"> Publish
+										</label>
+									</div>
+
+									
 							</div>
 
 							
@@ -62,10 +59,9 @@
 						</div><!-- /.box-body -->
 
 
-
 						<div class="box">
 							<div class="box-header">
-								<h3 class="box-title">Write Post Body Here <small>Simple and fast</small></h3>
+								<h3 class="box-title">Write PHP Programming Description Here <small>Simple and fast</small></h3>
 								<!-- tools box -->
 								<div class="pull-right box-tools">
 									<button class="btn btn-default btn-sm" data-widget="collapse" data-toggle="tooltip" title="Collapse"><i class="fa fa-minus"></i></button>
@@ -74,14 +70,33 @@
 							</div><!-- /.box-header -->
 							<div class="box-body pad">
 
-								<textarea name="body" style="width: 100%; height: 500px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;" id="editor1"></textarea>
+								<textarea name="description" style="width: 100%; height: 500px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;" id="editor1"></textarea>
+
+							</div>
+						</div>
+
+
+
+
+						<div class="box">
+							<div class="box-header">
+								<h3 class="box-title">Write PHP PROGRAMMING CODES Here <small>Simple and fast</small></h3>
+								<!-- tools box -->
+								<div class="pull-right box-tools">
+									<button class="btn btn-default btn-sm" data-widget="collapse" data-toggle="tooltip" title="Collapse"><i class="fa fa-minus"></i></button>
+
+								</div><!-- /. tools -->
+							</div><!-- /.box-header -->
+							<div class="box-body pad">
+
+								<textarea name="body" style="width: 100%; height: 500px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;" id="editor2"></textarea>
 
 							</div>
 						</div>
 
 						<div class="box-footer">
 							<input type="submit" name="" class="btn btn-primary" value="Submit">
-							<a href="{{ route('upload.index') }}" class="btn btn-warning">Back</a>
+							<a href="{{ route('lesson.index') }}" class="btn btn-warning">Back</a>
 						</div>
 					</form>
 					@include('sweetalert::alert')
@@ -105,6 +120,17 @@
         // Replace the <textarea id="editor1"> with a CKEditor
         // instance, using default configuration.
         CKEDITOR.replace('editor1');
+        //bootstrap WYSIHTML5 - text editor
+        $(".textarea").wysihtml5();
+      });
+    </script>
+
+
+    <script>
+      $(function () {
+        // Replace the <textarea id="editor1"> with a CKEditor
+        // instance, using default configuration.
+        CKEDITOR.replace('editor2');
         //bootstrap WYSIHTML5 - text editor
         $(".textarea").wysihtml5();
       });

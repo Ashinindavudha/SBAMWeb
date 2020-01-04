@@ -112,14 +112,14 @@ class PostController extends Controller
         $post->categories()->sync($request->categories);
         $post->save();
 
-        return redirect(route('post.index'))->with('message','Post Updated Successfully');
+        return redirect(route('post.index'))->with('success','Post Updated Successfully');
         
         //return $request->all();
     }
     public function destroy($id)
     {
         Post::where('id', $id)->delete();
-        return redirect()->back()->with('message','Post Delete Successfully');
+        return redirect()->back()->with('success','Post Delete Successfully');
         //return $id;
     }
 }

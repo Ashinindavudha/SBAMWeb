@@ -101,7 +101,7 @@ class TagController extends Controller
             $tag->name = $request->name;
             $tag->slug = $request->slug;
             $tag->save();
-            return redirect(route('tag.index'));
+            return redirect(route('tag.index'))->with('success','Tag Updated Successfully');
         
     }
 
@@ -115,6 +115,6 @@ class TagController extends Controller
     {
         
         Tag::where('id', $id)->delete();
-        return redirect()->back();
+        return redirect()->back()->with('success','Tag Deleted Successfully');
     }
 }

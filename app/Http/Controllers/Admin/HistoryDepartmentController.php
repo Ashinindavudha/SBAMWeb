@@ -64,7 +64,7 @@ class HistoryDepartmentController extends Controller
         $post->user_id = Auth::id();
         $post->save();
 
-        return redirect(route('history.index'))->with('success', 'Advertise Post was Created');
+        return redirect(route('history.index'))->with('success', 'HistoryDepartment Post was Created');
 
     }
 
@@ -134,6 +134,6 @@ class HistoryDepartmentController extends Controller
     public function destroy($id)
     {
         HistoryDepartment::where('id', $id)->delete();
-        return redirect()->back();
+        return redirect()->back()->with('success', 'HistoryDepartment Post was Deleted');
     }
 }

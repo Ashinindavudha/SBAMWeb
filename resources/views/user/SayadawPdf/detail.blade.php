@@ -22,9 +22,7 @@
             
             <h2 class="card-title">{{ $post->title }}</h2>
             <p class="card-text">{!! htmlspecialchars_decode($post->body) !!}</p>
-            
-           <a href="sayadawpdf/{{ $post->pdf }}" download="{{asset(Storage::disk('local')->url($post->pdf))}}" class="btn btn-primary">Download Ebook</a>
-            
+           
           </div>
           <div class="card-footer text-muted">
             Posted on {{ $post->created_at->diffForHumans() }} by
@@ -91,9 +89,9 @@
 
         <!-- Side Widget -->
         <div class="card my-4">
-          <h5 class="card-header">Side Widget</h5>
-          <div class="card-body">
-            You can put anything you want inside of these side widgets. They are easy to use, and feature the new Bootstrap 4 card containers!
+          <h5 class="card-header" style="text-align: center;">Local Time</h5>
+          <div class="card-body-time">
+            @include('user.include.datetime')
           </div>
         </div>
 
@@ -103,6 +101,8 @@
     <!-- /.row -->
 
   </div>
+
+  
   <!-- /.container -->
 @endsection
 </body>

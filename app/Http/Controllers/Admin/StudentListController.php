@@ -60,7 +60,7 @@ class StudentListController extends Controller
         $post->roll = $request->roll;
         $post->user_id = Auth::id();
         $post->save();
-        return redirect(route('list.index'))->with('success', 'Advertise Post was Created');
+        return redirect(route('list.index'))->with('success', 'StudentList was Created');
 
     }
 
@@ -110,7 +110,7 @@ class StudentListController extends Controller
         $post->roll = $request->roll;
         $post->user_id = Auth::id();
         $post->save();
-        return redirect(route('list.index'))->with('success', 'Advertise Post was Created');
+        return redirect(route('list.index'))->with('success', 'StudentList was Updated');
     }
 
     /**
@@ -122,6 +122,6 @@ class StudentListController extends Controller
     public function destroy($id)
     {
         StudentList::where('id', $id)->delete();
-        return redirect()->back()->with('success', 'Post was Delete');
+        return redirect()->back()->with('success', 'StudentList was Deleted');
     }
 }

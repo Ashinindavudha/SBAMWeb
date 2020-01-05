@@ -48,7 +48,7 @@
               <td>{{ $loop->index +1 }}</td>
               <td>{{ $download->title }}</td>
               <td>{{ $download->created_at->diffForHumans() }}</td>
-              <td><a href="{{asset(Storage::disk('local')->url($download->pdf))}}" download="{{asset(Storage::disk('local')->url($download->pdf))}}" class="btn btn-primary">Download</a> </td>
+              <td><a href="{{asset(Storage::disk('local')->url($download->pdf))}}" class="btn btn-primary">Download</a> </td>
             </tr>
             @endforeach
           </tbody>
@@ -114,8 +114,8 @@
         <!-- Side Widget -->
         <div class="card my-4">
           <h5 class="card-header">Side Widget</h5>
-          <div class="card-body">
-            You can put anything you want inside of these side widgets. They are easy to use, and feature the new Bootstrap 4 card containers!
+          <div class="card-body" style="background-color: #262626;">
+            @include('user.include.datetime')
           </div>
         </div>
 

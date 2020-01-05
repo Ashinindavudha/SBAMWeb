@@ -1,16 +1,16 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
-      <a class="navbar-brand" href="#">SBA-M</a>
+      <a class="navbar-brand" href="/">SBA-M</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
-          <li class="nav-item active">
-            <a class="nav-link" href="/">Home
+          <!-- <li class="nav-item active">
+            <a class="nav-link" href="/">SBA-M
               <span class="sr-only">(current)</span>
             </a>
-          </li>
+          </li> -->
 
 <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -21,7 +21,7 @@
           <a class="dropdown-item" href="{{url('/assignment')}}">Research & Assignment</a>
           <a class="dropdown-item" href="{{url('/history/department')}}">History Department</a>
           <a class="dropdown-item" href="{{url('/fileupload')}}">English Department</a>
-          <a class="dropdown-item" href="#">Computer Department</a>
+          <a class="dropdown-item" href="{{url('/computerdepartment')}}">Computer Department</a>
           
         </div>
       </li>

@@ -81,7 +81,7 @@
 
 						<div class="box-footer">
 							<input type="submit" name="" class="btn btn-primary" value="Submit">
-							<a href="{{ route('advertise.index') }}" class="btn btn-warning">Back</a>
+							<a href="{{ route('upload.index') }}" class="btn btn-warning">Back</a>
 						</div>
 					</form>
 					@include('sweetalert::alert')

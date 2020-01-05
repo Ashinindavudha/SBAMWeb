@@ -48,7 +48,7 @@
               <td>{{ $loop->index +1 }}</td>
               <td>{{ $download->title }}</td>
               <td>{{ $download->created_at->diffForHumans() }}</td>
-              <td><a href="sayadawpdf/{{ $download->pdf }}" download="{{asset(Storage::disk('local')->url($download->pdf))}}" class="btn btn-primary">Download</a> </td>
+              <td><a href="{{asset(Storage::disk('local')->url($download->pdf))}}" download="{{asset(Storage::disk('local')->url($download->pdf))}}" class="btn btn-primary">Download</a> </td>
             </tr>
             @endforeach
           </tbody>

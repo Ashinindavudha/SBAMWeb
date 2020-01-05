@@ -50,7 +50,9 @@ class SayadawPdfController extends Controller
        
 
          if ($request->hasFile('pdf')) {
-            $imageName = $request->pdf->store('public');
+
+            $imageName = $request->file('pdf')->store('public');
+
         }
 
         $post = new SayadawPdf;

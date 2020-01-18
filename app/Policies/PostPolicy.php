@@ -41,7 +41,7 @@ class PostPolicy
      */
     public function create(admin $user)
     {
-        return $this->getPermission($user, 9);
+        return $this->getPermission($user, 1);
         /*foreach ($user->roles as $role) {
             foreach ($role->permissions as $permission) {
                 if ($permission->id ==9) {
@@ -69,7 +69,7 @@ class PostPolicy
             }
         }
         return false;*/
-        return $this->getPermission($user, 10);
+        return $this->getPermission($user, 3);
     }
 
     /**
@@ -89,20 +89,20 @@ class PostPolicy
             }
         }
         return false;*/
-        return $this->getPermission($user, 11);
+        return $this->getPermission($user, 6);
     }
 
 
      public function tag(admin $user)
     {
         
-        return $this->getPermission($user, 16);
+        return $this->getPermission($user, 11);
     }
 
      public function category(admin $user)
     {
         
-        return $this->getPermission($user, 17);
+        return $this->getPermission($user, 12);
     }
 
     protected function getPermission($user, $p_id)

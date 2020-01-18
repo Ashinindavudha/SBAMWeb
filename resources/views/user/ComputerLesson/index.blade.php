@@ -57,6 +57,7 @@
         <!-- Categories Widget -->
         <div class="card my-4">
           <h5 class="card-header" style="text-align: center; font-size: 40px; color: #228B22;">Study More Here!</h5>
+          <h5 class="card-header">Categories</h5>
           <div class="card-body">
             <div class="row">
               <div class="col-lg-6">
@@ -68,7 +69,7 @@
                     <a href="{{url('/assignment')}}">C++ Programming</a>
                   </li>
                   <li>
-                    <a href="{{url('/assignment')}}">Android Programming</a>
+                    <a href="{{url('/android')}}">Android Programming</a>
                   </li>
                 </ul>
               </div>

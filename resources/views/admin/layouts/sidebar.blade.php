@@ -54,14 +54,6 @@
              <li class=""><a href="{{route('cplug.index')}}"><i class="fa fa-circle-o"></i> C++ Programming Lesson</a></li>
              <li class=""><a href="{{route('android.index')}}"><i class="fa fa-circle-o"></i> Android Programming Lesson</a></li>
 
-
-
-
-
-
-
-
-
             <!-- <li class="treeview">
               <a href="{{route('first.index')}}">
                 <i class="fa fa-pie-chart"></i>

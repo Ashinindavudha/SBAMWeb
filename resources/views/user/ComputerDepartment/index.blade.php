@@ -5,7 +5,6 @@
    @section('main-content')
 <!-- Page Content -->
   <div class="container mt-5">
-
     <div class="row">
 
       <!-- Blog Entries Column -->

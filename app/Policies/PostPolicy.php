@@ -70,6 +70,7 @@ class PostPolicy
         }
         return false;*/
         return $this->getPermission($user, 2);
+
     }
 
     /**
@@ -90,6 +91,7 @@ class PostPolicy
         }
         return false;*/
         return $this->getPermission($user, 3);
+
     }
 
 
@@ -97,12 +99,14 @@ class PostPolicy
     {
         
         return $this->getPermission($user, 7);
+
     }
 
      public function category(admin $user)
     {
         
         return $this->getPermission($user, 8);
+
     }
 
     protected function getPermission($user, $p_id)
